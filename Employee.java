@@ -1,21 +1,30 @@
 public class Employee {
-    private String employeeID;
-    private String firstName;
+    // Basic Information
+    private String employeeNumber;
     private String lastName;
-    private double hourlyRate;
-
-    public Employee(String id, String first, String last, double rate) {
-        this.employeeID = id;
-        this.firstName = first;
-        this.lastName = last;
-        this.hourlyRate = rate;
+    private String firstName;
+    private String birthday;
+    
+    // Constructor to fill in all the details from the MotorPH list
+    public Employee(String empNum, String lName, String fName, String bday, 
+                    double salary, double rice, double phone, double clothing, double hourly) {
+        this.employeeNumber = empNum;
+        this.lastName = lName;
+        this.firstName = fName;
+        this.birthday = bday;
+        this.basicSalary = salary;
+        this.riceSubsidy = rice;
+        this.phoneAllowance = phone;
+        this.clothingAllowance = clothing;
+        this.hourlyRate = hourly;
     }
 
-    public double calculateGrossPay(double hoursWorked) {
+    // Calculation Method for Gross Salary (Hours * Rate)
+    public double calculateGrossSalary(double hoursWorked) {
         return hoursWorked * hourlyRate;
     }
-    
+
+    // Getters to access data later
     public String getFullName() {
         return firstName + " " + lastName;
     }
-}
