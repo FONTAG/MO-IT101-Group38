@@ -27,11 +27,13 @@ public class MotorPH {
 
             double grossPay = emp.calculateGrossSalary(hoursWorked);
 
-            // Print the details for each person
             System.out.println("ID: " + emp.getEmployeeNumber());
             System.out.println("Name: " + emp.getFullName());
-            System.out.println("Gross Salary: PHP " + grossPay);
+            System.out.println("Monthly Basic: PHP " + emp.getBasicSalary());
+
+            System.out.println("Gross Semi-monthly Rate: PHP " + emp.getGrossSemiMonthlyRate());
+
+            System.out.println("Gross Salary (with Late Adj): PHP " + grossPay);
             System.out.println("------------------------------------");
         }
     }
-}
