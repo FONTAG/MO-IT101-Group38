@@ -1,4 +1,4 @@
-public class Main {
+public class MotorPH {
     public static void main(String[] args) {
         // 1. Create a "Test Employee" using the template we made
         // Employee(ID, Last, First, Bday, Basic, Rice, Phone, Clothes, Hourly)
