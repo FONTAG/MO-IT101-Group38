@@ -46,4 +46,6 @@ public class Employee {
     public double getBasicSalary() {
         return basicSalary;
     }
-}
+    public String getEmployeeNumber() {
+        return employeeNumber;
+    }
