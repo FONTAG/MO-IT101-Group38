@@ -39,6 +39,7 @@ public class MotorPH {
         employeeList.add(new Employee("10032", "Castro", "John Rafael", "02/09/1992", 52670.0,  1500.0, 1000, 1000, 313.51));
         employeeList.add(new Employee("10033", "Martinez", "Carlos Ian", "11/16/1990", 52670.0,1500.0, 1000, 1000, 313.51));
         employeeList.add(new Employee("10034", "Santos", "Beatriz", "08/07/1990", 52670.0, 1500.0, 1000, 1000, 313.51));
+        
         System.out.println("====== MotorPH Payroll System ======");
 
         for (Employee emp : employeeList) {
