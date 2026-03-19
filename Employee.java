@@ -23,6 +23,11 @@ public class Employee {
         this.firstName = fName;
         this.birthday = bday;
         this.basicSalary = salary;
+        this.basicSalary = salary;
+
+        // Calculation for Gross Semi-monthly rate (even if not needed)
+        this.grossSemiMonthlyRate = salary / 2;
+        
         this.riceSubsidy = rice;
         this.phoneAllowance = phone;
         this.clothingAllowance = clothing;
@@ -48,4 +53,7 @@ public class Employee {
     }
     public String getEmployeeNumber() {
         return employeeNumber;
+    }
+    public double getGrossSemiMonthlyRate() {
+        return grossSemiMonthlyRate;
     }
