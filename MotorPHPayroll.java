@@ -1,19 +1,30 @@
 public class MotorPH {
     public static void main(String[] args) {
-        // 1. Create a "Test Employee" using the template we made
-        // Employee(ID, Last, First, Bday, Basic, Rice, Phone, Clothes, Hourly)
+        // 1. Using the real Employee blueprint we built
         Employee testEmp = new Employee("10001", "Crisostomo", "Jose", "01/01/1990", 
                                         62670.00, 1500.00, 1000.00, 1000.00, 373.04);
 
-        // 2. Let's pretend they worked 40 hours this week
-        double hoursWorked = 40.0;
+        // 2. Scenario: Let's test the 10-minute grace period rule
+        int minutesLate = 15; // Change this to 5 to see it change to "ON TIME"
+        double hoursWorked = 8.0; // Standard 8-hour shift
+        
+        System.out.println("------ MotorPH Payroll System ------");
+        
+        // 3. The Grace Period Logic (The "Condition" being asked for)
+        if (minutesLate > 10) {
+            System.out.println("Status: LATE (Deduction applied)");
+            // If they are more than 10 mins late, we subtract that time.
+            // 15 minutes is 0.25 of an hour.
+            hoursWorked = hoursWorked - 0.25; 
+        } else {
+            System.out.println("Status: ON TIME / WITHIN GRACE PERIOD");
+        }
+
+        // 4. Calculate and display the results
         double grossPay = testEmp.calculateGrossSalary(hoursWorked);
 
-        // 3. Print the results to the "Console" to see if the math is right
-        System.out.println("------ MotorPH Payroll Test ------");
         System.out.println("Employee Name: " + testEmp.getFullName());
-        System.out.println("Gross Salary for " + hoursWorked + " hours: PHP " + grossPay);
-        System.out.println("Total Monthly Allowances: PHP " + testEmp.getTotalAllowances());
-        System.out.println("----------------------------------");
+        System.out.println("Final Gross Pay for today: PHP " + grossPay);
+        System.out.println("------------------------------------");
     }
 }
