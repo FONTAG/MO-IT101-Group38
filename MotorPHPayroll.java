@@ -1,30 +1,37 @@
+import java.util.ArrayList;
+
 public class MotorPH {
     public static void main(String[] args) {
-        // 1. Using the real Employee blueprint we built
-        Employee testEmp = new Employee("10001", "Crisostomo", "Jose", "01/01/1990", 
-                                        62670.00, 1500.00, 1000.00, 1000.00, 373.04);
+        // 1. Creating the ArrayList to hold our Employee objects
+        ArrayList<Employee> employeeList = new ArrayList<>();
 
-        // 2. Scenario: Let's test the 10-minute grace period rule
-        int minutesLate = 15; // Change this to 5 to see it change to "ON TIME"
-        double hoursWorked = 8.0; // Standard 8-hour shift
+        // 2. We added employees from the MotorPH data
+        // Format: (ID, Last, First, Birthday, Basic, Rice, Phone, Clothes, Hourly)
+        employeeList.add(new Employee("10001", "Garcia", "Manuel III", "10/11/1983", 90000.0, 1500.0, 2000.0, 1000.0, 535.71));
+        employeeList.add(new Employee("10002", "Lim", "Antonio", "06/19/1988", 60000.0, 1500.0, 2000.0, 1000.0, 357.14));
+        employeeList.add(new Employee("10003", "Aquino", "Bianca Sofia", "08/12/1989", 60000.0, 1500.0, 2000.0, 1000.0, 357.14));
+        employeeList.add(new Employee("10004", "Reyes", "Isabella", "06/16/1994", 60000.0, 1500.0, 2000.0, 1000.0, 357.14));
+
+        System.out.println("====== MotorPH Payroll System ======");
         
-        System.out.println("------ MotorPH Payroll System ------");
-        
-        // 3. The Grace Period Logic (The "Condition" being asked for)
-        if (minutesLate > 10) {
-            System.out.println("Status: LATE (Deduction applied)");
-            // If they are more than 10 mins late, we subtract that time.
-            // 15 minutes is 0.25 of an hour.
-            hoursWorked = hoursWorked - 0.25; 
-        } else {
-            System.out.println("Status: ON TIME / WITHIN GRACE PERIOD");
+        // 3. Loop through each employee in the list
+        for (Employee emp : employeeList) {
+            double hoursWorked = 40.0; // Let's assume a standard 40-hour week
+            int minutesLate = 12;      // Example: Testing the 10-minute rule
+            
+            // Apply Grace Period Logic
+            if (minutesLate > 10) {
+                // If more than 10 mins late, we deduct 0.25 hours (15 mins) as a penalty
+                hoursWorked = hoursWorked - 0.25;
+            }
+
+            double grossPay = emp.calculateGrossSalary(hoursWorked);
+
+            // Print the details for each person
+            System.out.println("ID: " + emp.getEmployeeNumber());
+            System.out.println("Name: " + emp.getFullName());
+            System.out.println("Gross Salary: PHP " + grossPay);
+            System.out.println("------------------------------------");
         }
-
-        // 4. Calculate and display the results
-        double grossPay = testEmp.calculateGrossSalary(hoursWorked);
-
-        System.out.println("Employee Name: " + testEmp.getFullName());
-        System.out.println("Final Gross Pay for today: PHP " + grossPay);
-        System.out.println("------------------------------------");
     }
 }
