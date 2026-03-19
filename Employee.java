@@ -57,3 +57,7 @@ public class Employee {
     public double getGrossSemiMonthlyRate() {
         return grossSemiMonthlyRate;
     }
+    public String getBirthday() {
+    return birthday;
+    }
+}
