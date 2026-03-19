@@ -20,6 +20,25 @@ public class MotorPH {
         employeeList.add(new Employee("10013", "Farala", "Martha", "01/11/1942", 24000.0, 1500.0, 500, 500, 142.86));
         employeeList.add(new Employee("10014", "Martinez", "Leila", "07/11/1970", 24000.0, 1500.0, 500, 500, 142.86));
         employeeList.add(new Employee("10015", "Romualdez", "Fredrick", "03/10/1985", 53500.0, 1500.0, 1000.0, 1000.0, 318.45));
+        employeeList.add(new Employee("10016", "Mata", "Christian", "10/21/1987", 42975.0, 1500.0, 800, 800, 255.80));
+        employeeList.add(new Employee("10017", "De Leon", "Selena", "02/20/1975", 41850.0, 1500.0, 800, 800, 249.11));
+        employeeList.add(new Employee("10018", "San Jose", "Allison", "06/24/1986", 22500.0, 1500.0, 500, 500, 133.93));
+        employeeList.add(new Employee("10019", "Rosario", "Cydney", "10/06/1996", 22500.0, 1500.0, 500, 500, 133.93));
+        employeeList.add(new Employee("10020", "Bautista", "Mark", "02/12/1991", 23250.0, 1500.0, 500, 500, 138.39));
+        employeeList.add(new Employee("10021", "Lazaro", "Darlene", "11/25/1985", 23250.0, 1500.0, 500, 500, 138.39));
+        employeeList.add(new Employee("10022", "Delos Santos", "Kolby", "02/26/1980", 24000.0, 1500.0, 500, 500, 142.86));
+        employeeList.add(new Employee("10023", "Santos", "Vella", "12/31/1983", 22500.0, 1500.0, 500, 500, 133.93));
+        employeeList.add(new Employee("10024", "Del Rosario", "Tomas", "12/18/1978", 22500.0, 1500.0, 500, 500, 133.93));
+        employeeList.add(new Employee("10025", "Tolentino", "Jacklyn", "05/19/1984", 24000.0, 1500.0, 500, 500, 142.86));
+        employeeList.add(new Employee("10026", "Gutierrez", "Percival", "12/18/1970", 24750.0, 1500.0, 500, 500, 147.32));
+        employeeList.add(new Employee("10027", "Manalaysay", "Garfield", "08/28/1986", 24750.0, 1500.0, 500, 500, 147.32));
+        employeeList.add(new Employee("10028", "Villegas", "Lizeth", "12/12/1981", 24000.0, 1500.0, 500, 500, 142.86));
+        employeeList.add(new Employee("10029", "Ramos", "Carol", "08/20/1978", 22500.0, 1500.0, 500, 500, 133.93));
+        employeeList.add(new Employee("10030", "Maceda", "Emelia", "04/14/1973", 22500.0, 1500.0, 500, 500, 133.93));
+        employeeList.add(new Employee("10031", "Aguilar", "Delia", "01/27/1989", 22500.0, 1500.0, 500, 500, 133.93));
+        employeeList.add(new Employee("10032", "Castro", "John Rafael", "02/09/1992", 52670.0,  1500.0, 1000, 1000, 313.51));
+        employeeList.add(new Employee("10033", "Martinez", "Carlos Ian", "11/16/1990", 52670.0,1500.0, 1000, 1000, 313.51));
+        employeeList.add(new Employee("10034", "Santos", "Beatriz", "08/07/1990", 52670.0, 1500.0, 1000, 1000, 313.51));
         System.out.println("====== MotorPH Payroll System ======");
 
         for (Employee emp : employeeList) {
