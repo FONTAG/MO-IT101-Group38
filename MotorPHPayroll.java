@@ -47,13 +47,16 @@ public class MotorPH {
         System.out.println("====== MotorPH Payroll Summary (Cutoff: " + currentCutoff + ") ======");
         
         for (Employee emp : employeeList) {
-            // Calculating hours from Time In/Out instead of hardcoding 40
-            // Example: 8:00 AM to 5:00 PM
-            double hoursPerDay = emp.calculateDailyHours("08:00", "17:00");
-            double totalHours = hoursPerDay * 5; // 40 hours for testing
+           
+            String timeIn = "08:00";
+            String timeOut = "17:00";
+
+            // Out - In - 1hr
+            double dailyHoursWorked = emp.calculateDailyHours(timeIn, timeOut);
             
-            double hoursWorked = 40.0;
-            double calculatedGross = emp.calculateGrossSalary(hoursWorked);
+            // Multiply by 5 days to get the weekly total
+            double totalHours = dailyHoursWorked * 5; 
+            double calculatedGross = emp.calculateGrossSalary(totalHours);
             
             // LOGIC: If it's the 1st cutoff, deductions are 0. If 2nd, use the formulas.
             double sss = (currentCutoff == 2) ? emp.calculateSSS() : 0.0;
@@ -61,9 +64,8 @@ public class MotorPH {
             double pagibig = (currentCutoff == 2) ? emp.calculatePagIbig() : 0.0;
             double totalDeductions = sss + philhealth + pagibig;
             
-            // Calculate the Tax (only if 2nd cutoff)
+            // Calculate Tax (only if 2nd cutoff)
             double tax = (currentCutoff == 2) ? emp.calculateTax(calculatedGross, totalDeductions) : 0.0;
-            
             double netPay = calculatedGross - totalDeductions - tax;
 
             System.out.println("ID: " + emp.getEmployeeNumber());
