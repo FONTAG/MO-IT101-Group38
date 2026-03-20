@@ -4,7 +4,7 @@ public class MotorPH {
     public static void main(String[] args) {
         ArrayList<Employee> employeeList = new ArrayList<>();
 
-        // Adding the 34 MotorPH employees
+        // Adding the MotorPH Employees
         employeeList.add(new Employee("10001", "Garcia", "Manuel III", "10/11/1983", 90000.0, 1500.0, 2000.0, 1000.0, 535.71));
         employeeList.add(new Employee("10002", "Lim", "Antonio", "06/19/1988", 60000.0, 1500.0, 2000.0, 1000.0, 357.14));
         employeeList.add(new Employee("10003", "Aquino", "Bianca Sofia", "08/12/1989", 60000.0, 1500.0, 2000.0, 1000.0, 357.14));
@@ -39,24 +39,21 @@ public class MotorPH {
         employeeList.add(new Employee("10032", "Castro", "John Rafael", "02/09/1992", 52670.0,  1500.0, 1000, 1000, 313.51));
         employeeList.add(new Employee("10033", "Martinez", "Carlos Ian", "11/16/1990", 52670.0,1500.0, 1000, 1000, 313.51));
         employeeList.add(new Employee("10034", "Santos", "Beatriz", "08/07/1990", 52670.0, 1500.0, 1000, 1000, 313.51));
+
+
+        System.out.println("====== MotorPH Payroll Summary ======");
         
-        System.out.println("====== MotorPH Payroll System ======");
-
         for (Employee emp : employeeList) {
-            double hoursWorked = 40.0;
-            int minutesLate = 0;
-
-            if (minutesLate > 10) {
-                hoursWorked = hoursWorked - 0.25;
-            }
-
-            double grossPay = emp.calculateGrossSalary(hoursWorked);
+            double hoursWorked = 40.0; // Standard Week
+            
+            // This calculates the gross based on hours * hourly rate
+            double calculatedGross = emp.calculateGrossSalary(hoursWorked);
 
             System.out.println("ID: " + emp.getEmployeeNumber());
             System.out.println("Name: " + emp.getFullName());
             System.out.println("Monthly Basic: PHP " + emp.getBasicSalary());
             System.out.println("Gross Semi-monthly Rate: PHP " + emp.getGrossSemiMonthlyRate());
-            System.out.println("Calculated Gross Pay: PHP " + totalGross);
+            System.out.println("Total Gross for 40hrs: PHP " + calculatedGross);
             System.out.println("------------------------------------");
         }
     }
