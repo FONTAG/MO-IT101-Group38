@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.time.LocalTime;
+import java.time.Duration;
 
 public class MotorPH {
     public static void main(String[] args) {
@@ -45,6 +47,11 @@ public class MotorPH {
         System.out.println("====== MotorPH Payroll Summary (Cutoff: " + currentCutoff + ") ======");
         
         for (Employee emp : employeeList) {
+            // Calculating hours from Time In/Out instead of hardcoding 40
+            // Example: 8:00 AM to 5:00 PM
+            double hoursPerDay = emp.calculateDailyHours("08:00", "17:00");
+            double totalHours = hoursPerDay * 5; // 40 hours for testing
+            
             double hoursWorked = 40.0;
             double calculatedGross = emp.calculateGrossSalary(hoursWorked);
             
@@ -52,20 +59,24 @@ public class MotorPH {
             double sss = (currentCutoff == 2) ? emp.calculateSSS() : 0.0;
             double philhealth = (currentCutoff == 2) ? emp.calculatePhilHealth() : 0.0;
             double pagibig = (currentCutoff == 2) ? emp.calculatePagIbig() : 0.0;
-            
             double totalDeductions = sss + philhealth + pagibig;
-            double netPay = calculatedGross - totalDeductions;
+            
+            // Calculate the Tax (only if 2nd cutoff)
+            double tax = (currentCutoff == 2) ? emp.calculateTax(calculatedGross, totalDeductions) : 0.0;
+            
+            double netPay = calculatedGross - totalDeductions - tax;
 
             System.out.println("ID: " + emp.getEmployeeNumber());
             System.out.println("Name: " + emp.getFullName());
             
             System.out.println("Monthly Basic: PHP " + emp.getBasicSalary());
             System.out.println("Gross Semi-monthly Rate: PHP " + emp.getGrossSemiMonthlyRate());
-            
+            System.out.printf("Hours Worked: %.2f hrs%n", totalHours);
             System.out.printf("Total Gross for 40hrs:  PHP %.2f%n" , calculatedGross);
             
             if (currentCutoff == 2) {
                 System.out.printf("SSS: PHP %.2f | PhilHealth: PHP %.2f | Pag-IBIG: PHP %.2f%n", sss, philhealth, pagibig);
+                System.out.printf("Withholding Tax: PHP %.2f%n", tax); // Add this line
             } else {
                 System.out.println("Status: 1st Cutoff - No Statutory Deductions applied.");
             }
