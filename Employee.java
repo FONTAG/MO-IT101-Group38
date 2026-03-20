@@ -33,7 +33,16 @@ class Employee {
         this.clothingAllowance = clothing;
         this.hourlyRate = hourly;
     }
-
+    
+    // Calculates time and subtracts 1 hour for lunch
+    public double calculateDailyHours(String timeIn, String timeOut) {
+        LocalTime start = LocalTime.parse(timeIn);
+        LocalTime end = LocalTime.parse(timeOut);
+        long minutes = Duration.between(start, end).toMinutes();
+        double hours = (minutes / 60.0) - 1.0; // Subtracting 1 hour lunch
+        return (hours < 0) ? 0 : hours;
+    }
+    
     public double calculateSSS() {
         if (basicSalary <= 3250) return 135.00;
         if (basicSalary >= 24750) return 1125.00;
@@ -53,6 +62,19 @@ class Employee {
     // Calculation Method for Gross Salary (Hours * Rate)
     public double calculateGrossSalary(double hoursWorked) {
         return hoursWorked * hourlyRate;
+    }
+    
+    // 2026 Withholding Tax Calculation (Semi-monthly)
+    public double calculateTax(double gross, double totalStatutory) {
+        double taxableIncome = gross - totalStatutory;
+        
+        if (taxableIncome <= 10417) return 0;
+        if (taxableIncome <= 16667) return (taxableIncome - 10417) * 0.15;
+        if (taxableIncome <= 33333) return ((taxableIncome - 16667) * 0.20) + 937.50;
+        if (taxableIncome <= 83333) return ((taxableIncome - 33333) * 0.25) + 4270.83;
+        if (taxableIncome <= 416667) return ((taxableIncome - 83333) * 0.30) + 16770.83;
+        
+        return ((taxableIncome - 416667) * 0.35) + 116770.83;
     }
 
     // Getters to access data later
