@@ -15,7 +15,7 @@ class Employee {
     private double phoneAllowance;
     private double clothingAllowance;
 
-    // Constructor to fill in all the details from the MotorPH list
+    // MotorPH Employee list
     public Employee(String empNum, String lName, String fName, String bday, 
                     double salary, double rice, double phone, double clothing, double hourly) {
         this.employeeNumber = empNum;
@@ -34,6 +34,12 @@ class Employee {
         this.hourlyRate = hourly;
     }
 
+    public double calculateSSS() {
+        if (basicSalary <= 3250) return 135.00;
+        if (basicSalary >= 24750) return 1125.00;
+        return (Math.floor((basicSalary - 3250) / 500) * 22.50) + 157.50;
+    }
+    
     // Calculation Method for Gross Salary (Hours * Rate)
     public double calculateGrossSalary(double hoursWorked) {
         return hoursWorked * hourlyRate;
