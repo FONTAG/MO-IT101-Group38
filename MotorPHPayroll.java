@@ -47,15 +47,20 @@ public class MotorPH {
             double hoursWorked = 40.0;
             double calculatedGross = emp.calculateGrossSalary(hoursWorked);
             double sssContribution = emp.calculateSSS();
+            double philhealth = emp.calculatePhilHealth();
+            double pagibig = emp.calculatePagIbig();
 
             System.out.println("ID: " + emp.getEmployeeNumber());
             System.out.println("Name: " + emp.getFullName());
             
             System.out.println("Monthly Basic: PHP " + emp.getBasicSalary());
             System.out.println("Gross Semi-monthly Rate: PHP " + emp.getGrossSemiMonthlyRate());
-            System.out.println("Total Gross for 40hrs: PHP " + calculatedGross);
+            
+            System.out.printf("Total Gross for 40hrs:  PHP %.2f%n" , calculatedGross);
             
             System.out.println("SSS Deduction: PHP " + sssContribution);
+            System.out.printf("PhilHealth Deduction: PHP %.2f%n", philhealth);
+            System.out.printf("Pag-IBIG Deduction: PHP %.2f%n", pagibig);
             System.out.println("------------------------------------");
         }
     }
