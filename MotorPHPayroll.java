@@ -40,15 +40,21 @@ public class MotorPH {
         employeeList.add(new Employee("10033", "Martinez", "Carlos Ian", "11/16/1990", 52670.0,1500.0, 1000, 1000, 313.51));
         employeeList.add(new Employee("10034", "Santos", "Beatriz", "08/07/1990", 52670.0, 1500.0, 1000, 1000, 313.51));
 
+        int currentCutoff = 2; // If this was changed to 1, no statutory deductions would be applied. (1st cutoff)
 
-        System.out.println("====== MotorPH Payroll Summary ======");
+        System.out.println("====== MotorPH Payroll Summary (Cutoff: " + currentCutoff + ") ======");
         
         for (Employee emp : employeeList) {
             double hoursWorked = 40.0;
             double calculatedGross = emp.calculateGrossSalary(hoursWorked);
-            double sssContribution = emp.calculateSSS();
-            double philhealth = emp.calculatePhilHealth();
-            double pagibig = emp.calculatePagIbig();
+            
+            // LOGIC: If it's the 1st cutoff, deductions are 0. If 2nd, use the formulas.
+            double sss = (currentCutoff == 2) ? emp.calculateSSS() : 0.0;
+            double philhealth = (currentCutoff == 2) ? emp.calculatePhilHealth() : 0.0;
+            double pagibig = (currentCutoff == 2) ? emp.calculatePagIbig() : 0.0;
+            
+            double totalDeductions = sss + philhealth + pagibig;
+            double netPay = calculatedGross - totalDeductions;
 
             System.out.println("ID: " + emp.getEmployeeNumber());
             System.out.println("Name: " + emp.getFullName());
@@ -58,9 +64,13 @@ public class MotorPH {
             
             System.out.printf("Total Gross for 40hrs:  PHP %.2f%n" , calculatedGross);
             
-            System.out.println("SSS Deduction: PHP " + sssContribution);
-            System.out.printf("PhilHealth Deduction: PHP %.2f%n", philhealth);
-            System.out.printf("Pag-IBIG Deduction: PHP %.2f%n", pagibig);
+            if (currentCutoff == 2) {
+                System.out.printf("SSS: PHP %.2f | PhilHealth: PHP %.2f | Pag-IBIG: PHP %.2f%n", sss, philhealth, pagibig);
+            } else {
+                System.out.println("Status: 1st Cutoff - No Statutory Deductions applied.");
+            }
+            
+            System.out.printf("NET PAY: PHP %.2f%n", netPay);
             System.out.println("------------------------------------");
         }
     }
