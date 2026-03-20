@@ -44,16 +44,18 @@ public class MotorPH {
         System.out.println("====== MotorPH Payroll Summary ======");
         
         for (Employee emp : employeeList) {
-            double hoursWorked = 40.0; // Standard Week
-            
-            // This calculates the gross based on hours * hourly rate
+            double hoursWorked = 40.0;
             double calculatedGross = emp.calculateGrossSalary(hoursWorked);
+            double sssContribution = emp.calculateSSS();
 
             System.out.println("ID: " + emp.getEmployeeNumber());
             System.out.println("Name: " + emp.getFullName());
+            
             System.out.println("Monthly Basic: PHP " + emp.getBasicSalary());
             System.out.println("Gross Semi-monthly Rate: PHP " + emp.getGrossSemiMonthlyRate());
             System.out.println("Total Gross for 40hrs: PHP " + calculatedGross);
+            
+            System.out.println("SSS Deduction: PHP " + sssContribution);
             System.out.println("------------------------------------");
         }
     }
