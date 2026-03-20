@@ -4,7 +4,7 @@ public class MotorPH {
     public static void main(String[] args) {
         ArrayList<Employee> employeeList = new ArrayList<>();
 
-        // Adding your employees
+        // Adding the 34 MotorPH employees
         employeeList.add(new Employee("10001", "Garcia", "Manuel III", "10/11/1983", 90000.0, 1500.0, 2000.0, 1000.0, 535.71));
         employeeList.add(new Employee("10002", "Lim", "Antonio", "06/19/1988", 60000.0, 1500.0, 2000.0, 1000.0, 357.14));
         employeeList.add(new Employee("10003", "Aquino", "Bianca Sofia", "08/12/1989", 60000.0, 1500.0, 2000.0, 1000.0, 357.14));
@@ -44,7 +44,7 @@ public class MotorPH {
 
         for (Employee emp : employeeList) {
             double hoursWorked = 40.0;
-            int minutesLate = 12;
+            int minutesLate = 0;
 
             if (minutesLate > 10) {
                 hoursWorked = hoursWorked - 0.25;
@@ -54,7 +54,9 @@ public class MotorPH {
 
             System.out.println("ID: " + emp.getEmployeeNumber());
             System.out.println("Name: " + emp.getFullName());
-            System.out.println("Gross Salary: PHP " + grossPay);
+            System.out.println("Monthly Basic: PHP " + emp.getBasicSalary());
+            System.out.println("Gross Semi-monthly Rate: PHP " + emp.getGrossSemiMonthlyRate());
+            System.out.println("Calculated Gross Pay: PHP " + totalGross);
             System.out.println("------------------------------------");
         }
     }
