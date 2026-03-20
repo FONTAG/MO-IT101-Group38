@@ -39,6 +39,16 @@ class Employee {
         if (basicSalary >= 24750) return 1125.00;
         return (Math.floor((basicSalary - 3250) / 500) * 22.50) + 157.50;
     }
+    public double calculatePhilHealth() {
+    // 2026 Philippine Rule: 5% of Basic Salary split between Employee and Employer
+    return (basicSalary * 0.05) / 2;
+    }
+    
+    public double calculatePagIbig() {
+    // Standard contribution is usually capped at 200 total (100 each for Emp/EE)
+    // for salaries above 1,500
+    return 100.00;
+    }
     
     // Calculation Method for Gross Salary (Hours * Rate)
     public double calculateGrossSalary(double hoursWorked) {
