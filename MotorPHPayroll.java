@@ -6,9 +6,11 @@ import java.util.Scanner;
 
 public class MotorPH {
     public static void main(String[] args) {
+        
         // ================= EMPLOYEE DATA LOADING =================
         // In a complete system, this should come from a CSV file.
         ArrayList<Employee> employeeList = loadEmployees();
+        ArrayList<Attendance> attendanceList = loadAttendance("attendance.csv");
 
         // Cutoff selection:
         // 1 = No deductions
@@ -19,15 +21,15 @@ public class MotorPH {
 
         // ================= MAIN PAYROLL LOOP =================
         for (Employee emp : employeeList) {
+        // OLD: hardcoded hours
+        // double hoursPerDay = emp.calculateDailyHours("08:00", "17:00");
+        // double totalHours = hoursPerDay * 5;
 
             // Step 1: Compute working hours based on time-in and time-out
-            double hoursPerDay = emp.calculateDailyHours("08:00", "17:00");
-
-            // Assume 5 working days per cutoff
-            double totalHours = hoursPerDay * 5;
+            double totalHours = computeEmployeeHours(emp, attendanceList);
 
             // Step 2: Compute gross pay (hours × hourly rate)
-            double baseGross = emp.calculateGrossSalary(totalHours);
+            double calculatedGross = emp.calculateGrossSalary(totalHours);
 
             // Step 3: Add allowances (fixed monthly benefits)
             double grossPay = baseGross + emp.getTotalAllowances();
@@ -51,6 +53,69 @@ public class MotorPH {
             printPayroll(emp, totalHours, grossPay, sss, philhealth, pagibig, tax, netPay, currentCutoff);
         }
     }
+
+        // ================= LOAD ATTENDANCE =================
+        // Method to load attendance from csv
+
+        public static ArrayList<Attendance> loadAttendance(String fileName) {
+            ArrayList<Attendance> list = new ArrayList<>();
+            
+            try {
+                File file = new File(fileName);
+                Scanner sc = new Scanner(file);
+                
+                sc.nextLine(); 
+                
+                while (sc.hasNextLine()) {
+                    String line = sc.nextLine();
+                    String[] data = line.split(",");
+                    
+                    list.add(new Attendance(
+                        data[0],
+                        data[1],
+                        data[2],
+                        data[3]
+                    ));
+                }
+                
+                sc.close();
+            } catch (Exception e) {
+                System.out.println("Error reading attendance file.");
+            }
+            return list;
+        }
+    // ===================== EMPLOYEE HOURS COMPUTATION =====================
+    // Method to compute total hours for an employee
+    
+    public static double computeEmployeeHours(Employee emp, ArrayList<Attendance> attendanceList) {
+        double totalHours = 0;
+        
+        for (Attendance att : attendanceList) {
+            // Match attendance to the current employee
+            if (att.getEmployeeNumber().equals(emp.getEmployeeNumber())) {
+                double hours = emp.calculateDailyHours(att.getTimeIn(), att.getTimeOut());
+                totalHours += hours;
+            }
+        }
+
+    return totalHours;
+}
+    
+        // ================= MAIN PAYROLL LOOP =================
+    public static double computeEmployeeHours(Employee emp, ArrayList<Attendance> attendanceList) {
+    double totalHours = 0;
+
+    for (Attendance att : attendanceList) {
+
+        if (att.getEmployeeNumber().equals(emp.getEmployeeNumber())) {
+
+            double hours = emp.calculateDailyHours(att.getTimeIn(), att.getTimeOut());
+            totalHours += hours;
+        }
+    }
+
+    return totalHours;
+}
 
     // Adding the MotorPH Employees
     // Loads employee data into an ArrayList.
