@@ -1,3 +1,9 @@
+import java.time.LocalTime;
+import java.time.Duration;
+
+// Employee entity that stores personal data and handles business rules
+// for statutory deductions and tax.
+
 class Employee {
     // ================= BASIC INFO =================
     private String employeeNumber;
@@ -48,13 +54,16 @@ class Employee {
         double hours = (minutes / 60.0) - 1.0;
 
         return (hours < 0) ? 0 : hours;
+    } catch (Exception e) {
+            return 0;
     }
+}
 
     //Gross Salary = Hours Worked × Hourly Rate
     public double calculateGrossSalary(double hoursWorked) {
         return hoursWorked * hourlyRate;
-    }
-
+    } 
+    
      //Total Allowances = Rice + Phone + Clothing
     public double getTotalAllowances() {
         return riceSubsidy + phoneAllowance + clothingAllowance;
@@ -69,12 +78,14 @@ class Employee {
 
     // PhilHealth = 5% of salary divided by 2 (employee share)
     public double calculatePhilHealth() {
-        return (basicSalary * 0.05) / 2;
+        return (basicSalary * 0.03) / 2;
     }
 
     // Pag-IBIG = Fixed 100 contribution
     public double calculatePagIbig() {
-        return 100.00;
+        double rate = (basicSalary > 1500) ? 0.02 : 0.01;
+        double contribution = basicSalary * rate;
+        return Math.min(contribution, 100.00);
     }
 
     // Withholding Tax Calculation (Semi-monthly)
@@ -93,11 +104,9 @@ class Employee {
     }
 
     // ================= GETTERS =================
-    public String getFullName() {
-        return firstName + " " + lastName;
+    public String getFullName() { return firstName + " " + lastName;
     }
 
-    public String getEmployeeNumber() {
-        return employeeNumber;
+    public String getEmployeeNumber() { return employeeNumber;
     }
 }
