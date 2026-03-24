@@ -32,7 +32,7 @@ public class MotorPHPayroll {
             double calculatedGross = emp.calculateGrossSalary(totalHours);
 
             // Step 3: Add allowances (fixed monthly benefits)
-            double grossPay = calculatedeGross + emp.getTotalAllowances();
+            double grossPay = calculatedGross + emp.getTotalAllowances();
 
             // Step 4: Compute deductions ONLY if 2nd cutoff
             double sss = (currentCutoff == 2) ? emp.calculateSSS() : 0.0;
