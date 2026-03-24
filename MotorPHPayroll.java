@@ -63,17 +63,17 @@ public class MotorPHPayroll {
                 if (sc.hasNextLine()) sc.nextLine();
                 
                 while (sc.hasNextLine()) {
-                    String line = sc.nextLine();
-                    String[] data = line.split(",");
-                    
-                    list.add(new Attendance(data[0], data[1], data[2], data[3]));
+                String line = sc.nextLine();
+                String[] data = line.split(",");
+                if (data.length >= 4) {
+                    list.add(new Attendance(data[0].trim(), data[1].trim(), data[2].trim(), data[3].trim()));
                 }
-                
-                sc.close();
-            } catch (Exception e) {
-                System.out.println("Error reading attendance file."); + e.getMessage());
             }
-            return list;
+            sc.close();
+        } catch (Exception e) {
+            System.out.println("Error reading attendance file: " + e.getMessage());
+        }
+        return list;
         }
     // ===================== EMPLOYEE HOURS COMPUTATION =====================
     // Method to compute total hours for an employee. Sums up all hours from the attendance list for a specific employee.
@@ -143,19 +143,14 @@ public class MotorPHPayroll {
 
         System.out.println("ID: " + emp.getEmployeeNumber());
         System.out.println("Name: " + emp.getFullName());
-
         System.out.printf("Hours Worked: %.2f hrs%n", hours);
-        System.out.printf("Gross Pay: PHP %.2f%n", gross);
+        System.out.printf("Gross Pay: PHP %,.2f%n", gross);
 
         if (cutoff == 2) {
-            System.out.printf("SSS: PHP %.2f | PhilHealth: PHP %.2f | Pag-IBIG: PHP %.2f%n",
-                    sss, philhealth, pagibig);
-            System.out.printf("Tax: PHP %.2f%n", tax);
-        } else {
-            System.out.println("No deductions applied (1st cutoff)");
+            System.out.printf("SSS: %.2f | PhilHealth: %.2f | Pag-IBIG: %.2f | Tax: %.2f%n",
+                    sss, philhealth, pagibig, tax);
         }
-
-        System.out.printf("NET PAY: PHP %.2f%n", net);
+        System.out.printf("NET PAY: PHP %,.2f%n", net);
         System.out.println("------------------------------------");
     }
 }
