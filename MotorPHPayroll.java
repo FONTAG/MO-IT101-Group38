@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.io.File;
 import java.util.Scanner;
 
-public class MotorPH {
+public class MotorPHPayroll {
     public static void main(String[] args) {
         
         // ================= EMPLOYEE DATA LOADING =================
@@ -32,7 +32,7 @@ public class MotorPH {
             double calculatedGross = emp.calculateGrossSalary(totalHours);
 
             // Step 3: Add allowances (fixed monthly benefits)
-            double grossPay = baseGross + emp.getTotalAllowances();
+            double grossPay = calculatedeGross + emp.getTotalAllowances();
 
             // Step 4: Compute deductions ONLY if 2nd cutoff
             double sss = (currentCutoff == 2) ? emp.calculateSSS() : 0.0;
@@ -42,9 +42,7 @@ public class MotorPH {
             double totalDeductions = sss + philhealth + pagibig;
 
             // Step 5: Compute tax (based on taxable income)
-            double tax = (currentCutoff == 2)
-                    ? emp.calculateTax(grossPay, totalDeductions)
-                    : 0.0;
+            double tax = (currentCutoff == 2) ? emp.calculateTax(grossPay, totalDeductions) : 0.0;
 
             // Step 6: Compute final net pay
             double netPay = grossPay - totalDeductions - tax;
@@ -55,67 +53,41 @@ public class MotorPH {
     }
 
         // ================= LOAD ATTENDANCE =================
-        // Method to load attendance from csv
+        // Method to load attendance from csv. Reads the attendance CSV and matches records to the employee.
 
         public static ArrayList<Attendance> loadAttendance(String fileName) {
             ArrayList<Attendance> list = new ArrayList<>();
-            
             try {
                 File file = new File(fileName);
                 Scanner sc = new Scanner(file);
-                
-                sc.nextLine(); 
+                if (sc.hasNextLine()) sc.nextLine();
                 
                 while (sc.hasNextLine()) {
                     String line = sc.nextLine();
                     String[] data = line.split(",");
                     
-                    list.add(new Attendance(
-                        data[0],
-                        data[1],
-                        data[2],
-                        data[3]
-                    ));
+                    list.add(new Attendance(data[0], data[1], data[2], data[3]));
                 }
                 
                 sc.close();
             } catch (Exception e) {
-                System.out.println("Error reading attendance file.");
+                System.out.println("Error reading attendance file."); + e.getMessage());
             }
             return list;
         }
     // ===================== EMPLOYEE HOURS COMPUTATION =====================
-    // Method to compute total hours for an employee
+    // Method to compute total hours for an employee. Sums up all hours from the attendance list for a specific employee.
     
     public static double computeEmployeeHours(Employee emp, ArrayList<Attendance> attendanceList) {
         double totalHours = 0;
-        
         for (Attendance att : attendanceList) {
-            // Match attendance to the current employee
             if (att.getEmployeeNumber().equals(emp.getEmployeeNumber())) {
-                double hours = emp.calculateDailyHours(att.getTimeIn(), att.getTimeOut());
-                totalHours += hours;
+                totalHours += emp.calculateDailyHours(att.getTimeIn(), att.getTimeOut());
             }
         }
-
-    return totalHours;
-}
-    
-        // ================= MAIN PAYROLL LOOP =================
-    public static double computeEmployeeHours(Employee emp, ArrayList<Attendance> attendanceList) {
-    double totalHours = 0;
-
-    for (Attendance att : attendanceList) {
-
-        if (att.getEmployeeNumber().equals(emp.getEmployeeNumber())) {
-
-            double hours = emp.calculateDailyHours(att.getTimeIn(), att.getTimeOut());
-            totalHours += hours;
-        }
+        
+        return totalHours;
     }
-
-    return totalHours;
-}
 
     // Adding the MotorPH Employees
     // Loads employee data into an ArrayList.
