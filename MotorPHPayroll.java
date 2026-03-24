@@ -52,7 +52,7 @@ public class MotorPH {
             double hoursPerDay = emp.calculateDailyHours("08:00", "17:00");
             double totalHours = hoursPerDay * 5; // 40 hours for testing
             
-            double hoursWorked = 40.0;
+            ddouble calculatedGross = emp.calculateGrossSalary(totalHours);
             double calculatedGross = emp.calculateGrossSalary(hoursWorked);
             
             // LOGIC: If it's the 1st cutoff, deductions are 0. If 2nd, use the formulas.
