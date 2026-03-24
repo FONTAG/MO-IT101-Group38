@@ -23,7 +23,6 @@ class Employee {
         this.firstName = fName;
         this.birthday = bday;
         this.basicSalary = salary;
-        this.basicSalary = salary;
 
         // Calculation for Gross Semi-monthly rate (even if not needed)
         this.grossSemiMonthlyRate = salary / 2;
