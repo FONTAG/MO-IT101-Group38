@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.time.LocalTime;
 import java.time.Duration;
+import java.io.File;
+import java.util.Scanner;
 
 public class MotorPH {
     public static void main(String[] args) {
