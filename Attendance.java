@@ -1,5 +1,6 @@
-public class Attendance {
+// Simple container for attendance record rows.
 
+public class Attendance {
     private String employeeNumber;
     private String date;
     private String timeIn;
@@ -12,15 +13,7 @@ public class Attendance {
         this.timeOut = out;
     }
 
-    public String getEmployeeNumber() {
-        return employeeNumber;
-    }
-
-    public String getTimeIn() {
-        return timeIn;
-    }
-
-    public String getTimeOut() {
-        return timeOut;
-    }
+    public String getEmployeeNumber() { return employeeNumber; }
+    public String getTimeIn() { return timeIn; }
+    public String getTimeOut() { return timeOut; }
 }
