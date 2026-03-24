@@ -30,12 +30,10 @@ class Employee {
         this.lastName = lName;
         this.firstName = fName;
         this.birthday = bday;
+        
 
         this.basicSalary = salary;
-
-        // Semi-monthly salary = Monthly / 2
-        this.grossSemiMonthlyRate = salary / 2;
-
+        
         this.riceSubsidy = rice;
         this.phoneAllowance = phone;
         this.clothingAllowance = clothing;
@@ -47,17 +45,17 @@ class Employee {
     // (Time Out - Time In) - 1 hour lunch break
     
     public double calculateDailyHours(String timeIn, String timeOut) {
-        LocalTime start = LocalTime.parse(timeIn);
-        LocalTime end = LocalTime.parse(timeOut);
-
-        long minutes = Duration.between(start, end).toMinutes();
-        double hours = (minutes / 60.0) - 1.0;
-
-        return (hours < 0) ? 0 : hours;
-    } catch (Exception e) {
+        try {
+            LocalTime start = LocalTime.parse(timeIn);
+            LocalTime end = LocalTime.parse(timeOut);
+            
+            long minutes = Duration.between(start, end).toMinutes();
+            double hours = (minutes / 60.0) - 1.0;
+            return (hours < 0) ? 0 : hours;
+        } catch (Exception e) {
             return 0;
+        }
     }
-}
 
     //Gross Salary = Hours Worked × Hourly Rate
     public double calculateGrossSalary(double hoursWorked) {
@@ -97,10 +95,8 @@ class Employee {
         if (taxableIncome <= 10417) return 0;
         if (taxableIncome <= 16667) return (taxableIncome - 10417) * 0.15;
         if (taxableIncome <= 33333) return ((taxableIncome - 16667) * 0.20) + 937.50;
-        if (taxableIncome <= 83333) return ((taxableIncome - 33333) * 0.25) + 4270.83;
-        if (taxableIncome <= 416667) return ((taxableIncome - 83333) * 0.30) + 16770.83;
 
-        return ((taxableIncome - 416667) * 0.35) + 116770.83;
+        return ((taxableIncome - 33333) * 0.25) + 4270.83;
     }
 
     // ================= GETTERS =================
