@@ -34,11 +34,14 @@ Setup & How to Run
      - You can change the time in and time out of employees depending on your liking,then see how it affects the Payroll System.
  3. Compile all the java codes. To avoid confusion here's the arrangement on how would you paste the codes on the complier
      a. MotoroPHPayroll.java
+    
      b. Employee.java
+    
      c. Attendance.java
+    
     Copy and paste everything on the complier following the same order and format.
- 4. Upload or add the attendance.csv on the complier
- 5. hit execute
+ 5. Upload or add the attendance.csv on the complier
+ 6. hit execute
 
 SAMPLE RESULT: (see image below)
 <img width="667" height="663" alt="image" src="https://github.com/user-attachments/assets/4539415a-72f1-436a-9dd3-304e8d83c598" />
@@ -48,7 +51,7 @@ Logic Overview & Data Architecture
 1. Time Processing Logic
    - String-to-Time Parsing: The system uses java.time.LocalTime to convert CSV strings (e.g., "08:30") into temporal objects.
    - Duration Calculation: It calculates the elapsed time using Duration.between.
-   - -Lunch Break Deduction: To comply with Philippine labor laws, the system automatically deducts 1 hour (60 minutes) from the total daily duration to account for the mandatory unpaid break.
+   - Lunch Break Deduction: To comply with Philippine labor laws, the system automatically deducts 1 hour (60 minutes) from the total daily duration to account for the mandatory unpaid break.
    - Negative Value Handling: A safety check ensures that if an employee's "Time Out" is before their "Time In" (or if total hours are less than the break), the work hours default to zero.
 
 2. Statutory Deduction Engine
