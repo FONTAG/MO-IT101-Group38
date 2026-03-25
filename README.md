@@ -33,7 +33,8 @@ Setup & How to Run
  2. Download the attendance csv (attendance.csv) file from the repository.
      - You can change the time in and time out of employees depending on your liking,then see how it affects the Payroll System.
  3. Compile all the java codes. To avoid confusion here's the arrangement on how would you paste the codes on the complier
-     a. MotoroPHPayroll.java
+
+    a. MotoroPHPayroll.java
     
      b. Employee.java
     
