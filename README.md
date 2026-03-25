@@ -66,8 +66,8 @@ Why 340 Rows of Input for the csv file?
 ----------------------------------------
   For this milestone, the attendance.csv was expanded to 340 rows (34 employees × 10 working days). This high volume of data was intentional for three reasons:
   1. Tax Threshold Validation: Using only 1 or 2 days of attendance results in a Gross Pay that falls below the BIR taxable threshold. By providing 10 days of randomized work hours, the Gross Pay reaches the PHP 10,417+ level, allowing us to verify that the Withholding Tax logic is functioning correctly.
-  2. 2. Stress Testing the Loop: It demonstrates the program’s capability to iterate through a large ArrayList of objects and match attendance logs to the correct Employee object using employeeNumber as a foreign key.
-     3. 3. Real-World Simulation: Randomizing the timeIn and timeOut values (e.g., 08:22 to 17:14) ensures the program handles non-standard hour totals (e.g., 7.84 hours) rather than just perfect 8-hour blocks.
+  2. Stress Testing the Loop: It demonstrates the program’s capability to iterate through a large ArrayList of objects and match attendance logs to the correct Employee object using employeeNumber as a foreign key.
+  3. Real-World Simulation: Randomizing the timeIn and timeOut values (e.g., 08:22 to 17:14) ensures the program handles non-standard hour totals (e.g., 7.84 hours) rather than just perfect 8-hour blocks.
 
 Project Plan Link:
 ----------------------------------------
